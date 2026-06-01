@@ -1,0 +1,1571 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Revente Vinted & Depop Pro — Guide 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0a0a0a;
+  --bg2: #111111;
+  --card: #181818;
+  --card2: #1f1f1f;
+  --a1: #c9a84c;
+  --a2: #e8c96d;
+  --a3: #6ee7b7;
+  --a4: #f87171;
+  --text: #f5f0e8;
+  --muted: #7a7060;
+  --border: rgba(201,168,76,0.15);
+  --card-border: rgba(201,168,76,0.1);
+  --font-title: 'Oswald', sans-serif;
+  --font-body: 'Inter', sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 16px 100px;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+}
+
+.page {
+  display: none;
+  width: 900px;
+  max-width: 100%;
+  border-radius: 22px;
+  animation: fadeSlide .4s ease;
+  border: 1px solid var(--border);
+  background: var(--bg2);
+  position: relative;
+}
+
+.page.active { display: block; }
+
+@keyframes fadeSlide {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.inner { padding: 52px 56px 58px; }
+
+.page-counter {
+  position: absolute;
+  top: 18px;
+  right: 22px;
+  font-family: var(--font-title);
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 2px;
+}
+
+/* NAV */
+.nav-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(10,10,10,0.95);
+  border-top: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 14px 20px;
+  z-index: 100;
+  backdrop-filter: blur(12px);
+}
+
+.nav-btn {
+  background: var(--card);
+  border: 1px solid var(--border);
+  color: var(--a1);
+  font-family: var(--font-title);
+  font-size: 12px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 8px 20px;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all .2s;
+}
+.nav-btn:hover { background: var(--a1); color: #0a0a0a; }
+
+.dots { display: flex; gap: 6px; align-items: center; }
+.dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--muted);
+  cursor: pointer;
+  transition: all .2s;
+}
+.dot.active { background: var(--a1); transform: scale(1.3); }
+
+.nav-counter {
+  font-family: var(--font-title);
+  font-size: 12px;
+  color: var(--muted);
+  min-width: 44px;
+  text-align: center;
+}
+
+/* COMPONENTS */
+.badge {
+  display: inline-block;
+  font-family: var(--font-title);
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  border-radius: 30px;
+  padding: 5px 14px;
+  background: linear-gradient(90deg, #c9a84c, #e8c96d);
+  color: #0a0a0a;
+  font-weight: 600;
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  border-radius: 14px;
+  padding: 22px 20px;
+}
+
+.card-title {
+  font-family: var(--font-title);
+  font-size: 13px;
+  color: var(--a1);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.stat-box {
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  border-radius: 14px;
+  padding: 22px 20px;
+  text-align: center;
+}
+.stat-num {
+  font-family: var(--font-title);
+  font-size: 32px;
+  color: var(--a1);
+  line-height: 1.1;
+}
+.stat-label {
+  font-size: 11px;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-top: 4px;
+}
+
+.check-item {
+  display: flex;
+  gap: 12px;
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  border-left: 3px solid var(--a1);
+  border-radius: 14px;
+  padding: 16px 18px;
+  align-items: flex-start;
+}
+.check-num {
+  font-family: var(--font-title);
+  font-size: 20px;
+  color: var(--a1);
+  min-width: 32px;
+  line-height: 1;
+}
+
+.highlight {
+  background: linear-gradient(135deg, rgba(201,168,76,0.07), rgba(110,231,183,0.04));
+  border: 1px solid rgba(201,168,76,0.2);
+  padding: 20px 22px;
+  border-radius: 14px;
+}
+
+.cta-box {
+  border-radius: 18px;
+  padding: 36px 40px;
+  text-align: center;
+}
+.cta-btn {
+  display: inline-block;
+  background: linear-gradient(90deg, #c9a84c, #e8c96d);
+  color: #0a0a0a;
+  padding: 14px 36px;
+  border-radius: 40px;
+  font-family: var(--font-title);
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  text-decoration: none;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all .2s;
+  border: none;
+}
+.cta-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(201,168,76,0.35); }
+
+h1, h2, h3, h4 { font-family: var(--font-title); }
+h2 { font-size: 28px; color: var(--text); margin-bottom: 6px; }
+h3 { font-size: 18px; color: var(--a2); margin-bottom: 8px; }
+p { font-size: 14px; line-height: 1.7; color: var(--text); }
+.muted { color: var(--muted); }
+
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+.grid-4 { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 14px; }
+
+.tag { display: inline-block; font-size: 10px; font-family: var(--font-title); letter-spacing: 1px; padding: 3px 10px; border-radius: 20px; text-transform: uppercase; }
+.tag-green { background: rgba(110,231,183,0.15); color: var(--a3); }
+.tag-gold { background: rgba(201,168,76,0.15); color: var(--a1); }
+.tag-red { background: rgba(248,113,113,0.15); color: var(--a4); }
+
+.sep { height: 1px; background: var(--border); margin: 24px 0; }
+
+ul { list-style: none; }
+ul li { font-size: 13.5px; line-height: 1.7; padding: 4px 0; color: var(--text); }
+ul li::before { content: '▸ '; color: var(--a1); }
+
+/* Animated particles for cover */
+@keyframes float1 { 0%,100%{transform:translateY(0) scale(1);opacity:.7} 50%{transform:translateY(-18px) scale(1.1);opacity:1} }
+@keyframes float2 { 0%,100%{transform:translateY(0) scale(1);opacity:.5} 50%{transform:translateY(-12px) scale(1.15);opacity:.9} }
+@keyframes float3 { 0%,100%{transform:translateY(0);opacity:.3} 50%{transform:translateY(-8px);opacity:.7} }
+@keyframes spin { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
+@keyframes pulse { 0%,100%{opacity:.4;transform:scale(1)} 50%{opacity:.9;transform:scale(1.05)} }
+@keyframes shimmer { 0%{stroke-dashoffset:200} 100%{stroke-dashoffset:0} }
+
+/* Progress bars */
+.progress-bar {
+  height: 6px;
+  background: var(--card);
+  border-radius: 3px;
+  overflow: hidden;
+  margin-top: 8px;
+}
+.progress-fill {
+  height: 100%;
+  border-radius: 3px;
+  background: linear-gradient(90deg, var(--a1), var(--a3));
+}
+
+/* Timeline dot */
+.tl-dot {
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  background: var(--a1);
+  flex-shrink: 0;
+  margin-top: 4px;
+}
+
+@media (max-width: 920px) {
+  .inner { padding: 28px 20px 32px; }
+  .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+  h2 { font-size: 22px; }
+  .stat-num { font-size: 26px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════ PAGE 01 — COVER ═══════════════════════════════════ -->
+<div class="page active" id="p1">
+  <div class="page-counter">01 / 16</div>
+  <div style="background: radial-gradient(ellipse at 30% 50%, #1a1400 0%, #0a0a0a 60%); border-radius: 22px; padding: 52px 56px 58px; position:relative; overflow:hidden; min-height: 560px;">
+    <!-- Animated gold particles -->
+    <svg style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="780" cy="80" r="3" fill="#c9a84c" style="animation:float1 4s ease-in-out infinite"/>
+      <circle cx="820" cy="160" r="2" fill="#e8c96d" style="animation:float2 3.5s ease-in-out infinite .5s"/>
+      <circle cx="750" cy="240" r="4" fill="#c9a84c" style="animation:float3 5s ease-in-out infinite 1s"/>
+      <circle cx="860" cy="300" r="2" fill="#e8c96d" style="animation:float1 4.5s ease-in-out infinite .3s"/>
+      <circle cx="700" cy="380" r="3" fill="#6ee7b7" style="animation:float2 3s ease-in-out infinite .8s"/>
+      <circle cx="840" cy="440" r="2" fill="#c9a84c" style="animation:float3 4s ease-in-out infinite .2s"/>
+      <circle cx="50" cy="100" r="2" fill="#c9a84c" style="animation:float2 5s ease-in-out infinite 1.2s"/>
+      <circle cx="30" cy="420" r="3" fill="#e8c96d" style="animation:float1 3.8s ease-in-out infinite .6s"/>
+    </svg>
+    <div style="display:grid;grid-template-columns:1fr 360px;gap:40px;align-items:center;position:relative;z-index:2;">
+      <div>
+        <div class="badge" style="margin-bottom:20px;">GUIDE ULTIME 2026</div>
+        <h1 style="font-size:48px;line-height:1.1;margin-bottom:16px;">REVENTE<br><span style="color:var(--a1)">VINTED &amp; DEPOP</span><br>PRO</h1>
+        <p style="font-size:15px;color:var(--a2);margin-bottom:28px;line-height:1.6;">Transforme les friperies en 1 000€/mois grâce à un système de sourcing et de listing qui cartonne vraiment.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:32px;">
+          <span style="background:rgba(201,168,76,0.12);border:1px solid rgba(201,168,76,0.3);border-radius:30px;padding:6px 14px;font-size:12px;font-family:var(--font-title);letter-spacing:1px;">💰 Sourcing Malin</span>
+          <span style="background:rgba(201,168,76,0.12);border:1px solid rgba(201,168,76,0.3);border-radius:30px;padding:6px 14px;font-size:12px;font-family:var(--font-title);letter-spacing:1px;">📸 Listing Pro</span>
+          <span style="background:rgba(110,231,183,0.12);border:1px solid rgba(110,231,183,0.3);border-radius:30px;padding:6px 14px;font-size:12px;font-family:var(--font-title);letter-spacing:1px;">📦 Expédition Rapide</span>
+          <span style="background:rgba(201,168,76,0.12);border:1px solid rgba(201,168,76,0.3);border-radius:30px;padding:6px 14px;font-size:12px;font-family:var(--font-title);letter-spacing:1px;">📈 Scale & Automatise</span>
+        </div>
+        <p style="font-size:12px;color:var(--muted);font-family:var(--font-title);letter-spacing:1.5px;">By VintagePro Brand — Édition 2026</p>
+      </div>
+      <!-- SVG thématique : hanger + vêtement + tags prix -->
+      <div style="position:relative;">
+        <svg viewBox="0 0 350 450" width="350" height="450" xmlns="http://www.w3.org/2000/svg">
+          <!-- Background glow -->
+          <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#c9a84c" stop-opacity="0.12"/>
+            <stop offset="100%" stop-color="#0a0a0a" stop-opacity="0"/>
+          </radialGradient>
+          <ellipse cx="175" cy="225" rx="150" ry="180" fill="url(#glow)"/>
+
+          <!-- Cintres -->
+          <circle cx="175" cy="60" r="12" fill="none" stroke="#c9a84c" stroke-width="3" style="animation:pulse 2.5s ease-in-out infinite"/>
+          <line x1="175" y1="72" x2="175" y2="95" stroke="#c9a84c" stroke-width="2.5"/>
+          <path d="M90 130 Q175 90 260 130" fill="none" stroke="#c9a84c" stroke-width="3" stroke-linecap="round"/>
+          <line x1="90" y1="130" x2="75" y2="155" stroke="#c9a84c" stroke-width="2.5"/>
+          <line x1="260" y1="130" x2="275" y2="155" stroke="#c9a84c" stroke-width="2.5"/>
+
+          <!-- Vêtement (t-shirt stylisé) -->
+          <path d="M95 160 L70 200 L110 210 L110 320 L240 320 L240 210 L280 200 L255 160 L215 175 Q175 185 135 175 Z" fill="#1f1f1f" stroke="#c9a84c" stroke-width="1.5"/>
+          <!-- Col -->
+          <path d="M135 175 Q175 195 215 175" fill="none" stroke="#e8c96d" stroke-width="2"/>
+          <!-- Étiquette prix 1 -->
+          <rect x="60" y="240" width="72" height="42" rx="6" fill="#181818" stroke="#c9a84c" stroke-width="1.5"/>
+          <text x="96" y="258" text-anchor="middle" font-family="Oswald,sans-serif" font-size="14" fill="#c9a84c" font-weight="700">45€</text>
+          <text x="96" y="273" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" fill="#7a7060">Coût: 3€</text>
+          <line x1="96" y1="240" x2="96" y2="230" stroke="#c9a84c" stroke-width="1.5" stroke-dasharray="3,2"/>
+          <!-- Étiquette prix 2 -->
+          <rect x="218" y="235" width="82" height="46" rx="6" fill="#181818" stroke="#6ee7b7" stroke-width="1.5"/>
+          <text x="259" y="254" text-anchor="middle" font-family="Oswald,sans-serif" font-size="15" fill="#6ee7b7" font-weight="700">+1500%</text>
+          <text x="259" y="270" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" fill="#7a7060">marge moyenne</text>
+          <line x1="259" y1="235" x2="259" y2="225" stroke="#6ee7b7" stroke-width="1.5" stroke-dasharray="3,2"/>
+
+          <!-- Étiquette flottante: trending -->
+          <rect x="120" y="340" width="110" height="38" rx="8" fill="linear-gradient(90deg,#c9a84c,#e8c96d)" stroke="#c9a84c" stroke-width="1"/>
+          <rect x="120" y="340" width="110" height="38" rx="8" fill="#c9a84c" opacity=".15"/>
+          <rect x="120" y="340" width="110" height="38" rx="8" fill="none" stroke="#c9a84c" stroke-width="1.5"/>
+          <text x="175" y="357" text-anchor="middle" font-family="Oswald,sans-serif" font-size="12" fill="#c9a84c" letter-spacing="1">TRENDING NOW</text>
+          <text x="175" y="371" text-anchor="middle" font-family="Oswald,sans-serif" font-size="10" fill="#e8c96d">Y2K · Vintage · Luxury</text>
+
+          <!-- Euros qui tombent -->
+          <text x="40" y="340" font-family="Oswald,sans-serif" font-size="20" fill="#c9a84c" opacity=".6" style="animation:float1 3s ease-in-out infinite">€</text>
+          <text x="300" y="280" font-family="Oswald,sans-serif" font-size="16" fill="#e8c96d" opacity=".5" style="animation:float2 4s ease-in-out infinite .5s">€</text>
+          <text x="315" y="380" font-family="Oswald,sans-serif" font-size="22" fill="#6ee7b7" opacity=".4" style="animation:float3 3.5s ease-in-out infinite 1s">€</text>
+
+          <!-- Bar progression ventes -->
+          <text x="90" y="405" font-family="Inter,sans-serif" font-size="9" fill="#7a7060">Progression revenus</text>
+          <rect x="90" y="412" width="170" height="4" rx="2" fill="#1f1f1f"/>
+          <rect x="90" y="412" width="145" height="4" rx="2" fill="url(#bargrad)"/>
+          <linearGradient id="bargrad" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#c9a84c"/>
+            <stop offset="100%" stop-color="#6ee7b7"/>
+          </linearGradient>
+        </svg>
+        <!-- Stat bubbles -->
+        <div style="position:absolute;top:10px;left:-30px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:10px 14px;text-align:center;min-width:80px;">
+          <div style="font-family:var(--font-title);font-size:20px;color:var(--a1);">1000€</div>
+          <div style="font-size:9px;color:var(--muted);letter-spacing:1px;">/ mois</div>
+        </div>
+        <div style="position:absolute;bottom:60px;left:-40px;background:var(--card);border:1px solid rgba(110,231,183,0.2);border-radius:12px;padding:10px 14px;text-align:center;min-width:80px;">
+          <div style="font-family:var(--font-title);font-size:20px;color:var(--a3);">92M</div>
+          <div style="font-size:9px;color:var(--muted);letter-spacing:1px;">utilisateurs</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════ PAGE 02 — INTRODUCTION ═══════════════════════════════════ -->
+<div class="page" id="p2">
+  <div class="inner">
+    <div class="page-counter">02 / 16</div>
+    <div class="badge" style="margin-bottom:16px;">INTRODUCTION</div>
+    <h2 style="margin-bottom:4px;">Le marché de la <span style="color:var(--a1)">seconde main</span> explose</h2>
+    <p style="color:var(--muted);font-size:13px;margin-bottom:28px;">Des chiffres qui ne mentent pas — et une opportunité que la plupart ratent</p>
+
+    <div class="grid-4" style="margin-bottom:24px;">
+      <div class="stat-box"><div class="stat-num">92M</div><div class="stat-label">Acheteurs Vinted</div></div>
+      <div class="stat-box"><div class="stat-num">47B€</div><div class="stat-label">Marché 2nd main 2025</div></div>
+      <div class="stat-box"><div class="stat-num">+127%</div><div class="stat-label">Croissance 3 ans</div></div>
+      <div class="stat-box"><div class="stat-num">1500%</div><div class="stat-label">Marge moyenne atteignable</div></div>
+    </div>
+
+    <div class="highlight" style="margin-bottom:24px;">
+      <h3 style="color:var(--a4);margin-bottom:8px;">⚠️ La réalité brutale</h3>
+      <p>95% des vendeurs Vinted gagnent moins de 50€/mois parce qu'ils vendent <em>au hasard</em> : mauvaises niches, photos médiocres, prix mal positionnés. Les 5% restants ont un <strong style="color:var(--a1)">système</strong>. Ce guide, c'est ce système.</p>
+    </div>
+
+    <div class="grid-2" style="margin-bottom:24px;">
+      <div class="card">
+        <div class="card-title">Ce que tu vas apprendre</div>
+        <ul>
+          <li>Sourcer des pièces à 1-5€ avec potentiel x10</li>
+          <li>Photographier comme un e-shop premium</li>
+          <li>Rédiger des titres qui rankent sur Vinted</li>
+          <li>Gérer 50+ annonces sans y passer sa vie</li>
+          <li>Encaisser 1 000€/mois en 90 jours</li>
+          <li>Automatiser et scaler à 2 000€+/mois</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">Pour qui ?</div>
+        <ul>
+          <li>Étudiant·e cherchant revenus complémentaires</li>
+          <li>Passionné·e de mode et friperies</li>
+          <li>Vendeur·se Vinted stagnant sous 100€/mois</li>
+          <li>Entrepreneur·e voulant tester le resell</li>
+        </ul>
+        <div class="sep"></div>
+        <p style="font-size:12px;color:var(--muted);">💡 Aucun capital de départ important requis. 50-100€ suffisent pour démarrer.</p>
+      </div>
+    </div>
+
+    <div class="grid-3">
+      <div class="card" style="text-align:center;border-color:rgba(201,168,76,0.2);">
+        <div style="font-size:24px;margin-bottom:6px;">📊</div>
+        <div class="card-title">Data</div>
+        <p style="font-size:12px;">Chiffres réels, études de marché 2025, prix vendus vérifiés</p>
+      </div>
+      <div class="card" style="text-align:center;border-color:rgba(110,231,183,0.2);">
+        <div style="font-size:24px;margin-bottom:6px;">⚡</div>
+        <div class="card-title">Actionnable</div>
+        <p style="font-size:12px;">Zéro blabla : chaque conseil se met en place aujourd'hui</p>
+      </div>
+      <div class="card" style="text-align:center;border-color:rgba(201,168,76,0.2);">
+        <div style="font-size:24px;margin-bottom:6px;">🏆</div>
+        <div class="card-title">Résultats</div>
+        <p style="font-size:12px;">Étude de cas réelle : 0→1 000€/mois en 87 jours</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════ PAGE 03 — FONDAMENTAUX ═══════════════════════════════════ -->
+<div class="page" id="p3">
+  <div class="inner">
+    <div class="page-counter">03 / 16</div>
+    <div class="badge" style="margin-bottom:16px;">FONDAMENTAUX</div>
+    <h2 style="margin-bottom:4px;">Les 3 piliers d'un <span style="color:var(--a1)">business rentable</span></h2>
+    <p style="color:var(--muted);font-size:13px;margin-bottom:28px;">Sans ces 3 éléments alignés, impossible d'atteindre 1 000€/mois</p>
+
+    <!-- Hexagones connectés SVG -->
+    <div style="display:flex;justify-content:center;margin-bottom:28px;">
+      <svg viewBox="0 0 700 260" width="100%" style="max-width:700px;" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="hg1" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#c9a84c" stop-opacity=".25"/>
+            <stop offset="100%" stop-color="#c9a84c" stop-opacity=".05"/>
+          </linearGradient>
+          <linearGradient id="hg2" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#6ee7b7" stop-opacity=".2"/>
+            <stop offset="100%" stop-color="#6ee7b7" stop-opacity=".04"/>
+          </linearGradient>
+          <linearGradient id="hg3" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#e8c96d" stop-opacity=".25"/>
+            <stop offset="100%" stop-color="#e8c96d" stop-opacity=".05"/>
+          </linearGradient>
+        </defs>
+        <!-- Hex 1 : Sourcing -->
+        <polygon points="120,20 190,60 190,140 120,180 50,140 50,60" fill="url(#hg1)" stroke="#c9a84c" stroke-width="1.5"/>
+        <text x="120" y="88" text-anchor="middle" font-family="Oswald,sans-serif" font-size="28" fill="#c9a84c">🛍️</text>
+        <text x="120" y="115" text-anchor="middle" font-family="Oswald,sans-serif" font-size="14" fill="#c9a84c" letter-spacing="1">SOURCING</text>
+        <text x="120" y="132" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" fill="#7a7060">Trouver les pépites</text>
+
+        <!-- Connexion 1→2 -->
+        <line x1="192" y1="100" x2="258" y2="100" stroke="#c9a84c" stroke-width="1.5" stroke-dasharray="4,3" opacity=".6"/>
+        <text x="225" y="94" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" fill="#7a7060">×10</text>
+
+        <!-- Hex 2 : Listing -->
+        <polygon points="350,20 420,60 420,140 350,180 280,140 280,60" fill="url(#hg2)" stroke="#6ee7b7" stroke-width="1.5"/>
+        <text x="350" y="88" text-anchor="middle" font-family="Oswald,sans-serif" font-size="28" fill="#6ee7b7">📸</text>
+        <text x="350" y="115" text-anchor="middle" font-family="Oswald,sans-serif" font-size="14" fill="#6ee7b7" letter-spacing="1">LISTING</text>
+        <text x="350" y="132" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" fill="#7a7060">Photos & Titres</text>
+
+        <!-- Connexion 2→3 -->
+        <line x1="422" y1="100" x2="488" y2="100" stroke="#6ee7b7" stroke-width="1.5" stroke-dasharray="4,3" opacity=".6"/>
+        <text x="455" y="94" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" fill="#7a7060">×3</text>
+
+        <!-- Hex 3 : Volume -->
+        <polygon points="580,20 650,60 650,140 580,180 510,140 510,60" fill="url(#hg3)" stroke="#e8c96d" stroke-width="1.5"/>
+        <text x="580" y="88" text-anchor="middle" font-family="Oswald,sans-serif" font-size="28" fill="#e8c96d">📦</text>
+        <text x="580" y="115" text-anchor="middle" font-family="Oswald,sans-serif" font-size="14" fill="#e8c96d" letter-spacing="1">VOLUME</text>
+        <text x="580" y="132" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" fill="#7a7060">Expédier vite & bien</text>
+
+        <!-- Résultat -->
+        <text x="350" y="220" text-anchor="middle" font-family="Oswald,sans-serif" font-size="16" fill="#c9a84c">SOURCING × LISTING × VOLUME = 1 000€/mois</text>
+        <line x1="150" y1="210" x2="200" y2="210" stroke="var(--border)" stroke-width="1"/>
+        <line x1="500" y1="210" x2="550" y2="210" stroke="var(--border)" stroke-width="1"/>
+      </svg>
+    </div>
+
+    <div class="highlight" style="margin-bottom:24px;">
+      <p><strong style="color:var(--a1);">Insight clé :</strong> La plupart optimisent le listing en oubliant le sourcing. Pourtant, 80% de ton profit se joue à l'achat. Un article à 2€ revendu à 25€ = 1150% ROI. Un article à 15€ revendu à 25€ = 67% ROI. La différence est dans la friperie, pas sur Vinted.</p>
+    </div>
+
+    <div class="grid-3">
+      <div class="card" style="border-left:3px solid var(--a1);">
+        <div class="card-title">Pilier 1 — Sourcing</div>
+        <p style="font-size:13px;">Identifier les marques sous-valorisées. Nike, Ralph Lauren, Levi's, Y2K = acheter à 1-8€ en friperie pour revendre 25-120€ en ligne.</p>
+      </div>
+      <div class="card" style="border-left:3px solid var(--a3);">
+        <div class="card-title">Pilier 2 — Listing</div>
+        <p style="font-size:13px;">Photos blanches, fond neutre, 6 angles. Titre avec marque + modèle + taille. Description avec mots-clés qui searchent. Différentiel vs la concurrence.</p>
+      </div>
+      <div class="card" style="border-left:3px solid var(--a2);">
+        <div class="card-title">Pilier 3 — Volume</div>
+        <p style="font-size:13px;">Mettre en ligne 30+ articles/semaine. Expédier sous 24h. Répondre aux messages en 2h. C'est le volume et la régularité qui font le chiffre.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════ PAGE 04 — CONCEPT CLÉ #1 : SOURCING ═══════════════════════════════════ -->
+<div class="page" id="p4">
+  <div class="inner">
+    <div class="page-counter">04 / 16</div>
+    <div class="badge" style="margin-bottom:16px;">CONCEPT CLÉ #1</div>
+    <h2 style="margin-bottom:4px;">Le <span style="color:var(--a1)">Sourcing Stratégique</span></h2>
+    <p style="color:var(--muted);font-size:13px;margin-bottom:28px;">Comment trouver les pépites à revendre ×10 chaque semaine</p>
+
+    <div class="grid-3" style="margin-bottom:24px;">
+      <div class="stat-box"><div class="stat-num">2€</div><div class="stat-label">Prix moyen friperie</div></div>
+      <div class="stat-box"><div class="stat-num">28€</div><div class="stat-label">Prix moyen revente</div></div>
+      <div class="stat-box" style="border-color:rgba(110,231,183,0.25);">
+        <div class="stat-num" style="color:var(--a3);">1300%</div>
+        <div class="stat-label">ROI moyen atteignable</div>
+      </div>
+    </div>
+
+    <!-- Formule principale SVG -->
+    <div style="margin-bottom:24px;">
+      <svg viewBox="0 0 700 110" width="100%" xmlns="http://www.w3.org/2000/svg">
+        <rect x="0" y="10" width="140" height="90" rx="10" fill="#181818" stroke="#c9a84c" stroke-width="1.5"/>
+        <text x="70" y="50" text-anchor="middle" font-family="Oswald,sans-serif" font-size="13" fill="#c9a84c">PRIX ACHAT</text>
+        <text x="70" y="70" text-anchor="middle" font-family="Oswald,sans-serif" font-size="22" fill="#e8c96d">1-5€</text>
+        <text x="70" y="88" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" fill="#7a7060">friperie / vide-grenier</text>
+
+        <text x="175" y="62" text-anchor="middle" font-family="Oswald,sans-serif" font-size="24" fill="#7a7060">×</text>
+
+        <rect x="195" y="10" width="140" height="90" rx="10" fill="#181818" stroke="#c9a84c" stroke-width="1.5"/>
+        <text x="265" y="50" text-anchor="middle" font-family="Oswald,sans-serif" font-size="13" fill="#c9a84c">POTENTIEL</text>
+        <text x="265" y="70" text-anchor="middle" font-family="Oswald,sans-serif" font-size="22" fill="#e8c96d">Marque</text>
+        <text x="265" y="88" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" fill="#7a7060">état + tendance</text>
+
+        <text x="368" y="62" text-anchor="middle" font-family="Oswald,sans-serif" font-size="24" fill="#7a7060">+</text>
+
+        <rect x="385" y="10" width="140" height="90" rx="10" fill="#181818" stroke="#6ee7b7" stroke-width="1.5"/>
+        <text x="455" y="50" text-anchor="middle" font-family="Oswald,sans-serif" font-size="13" fill="#6ee7b7">LISTING PRO</text>
+        <text x="455" y="70" text-anchor="middle" font-family="Oswald,sans-serif" font-size="22" fill="#6ee7b7">Photos</text>
+        <text x="455" y="88" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" fill="#7a7060">titres optimisés</text>
+
+        <text x="548" y="62" text-anchor="middle" font-family="Oswald,sans-serif" font-size="24" fill="#c9a84c">=</text>
+
+        <rect x="562" y="10" width="138" height="90" rx="10" fill="rgba(201,168,76,0.12)" stroke="#c9a84c" stroke-width="2"/>
+        <text x="631" y="50" text-anchor="middle" font-family="Oswald,sans-serif" font-size="13" fill="#c9a84c">PROFIT</text>
+        <text x="631" y="72" text-anchor="middle" font-family="Oswald,sans-serif" font-size="22" fill="#e8c96d">20-80€</text>
+        <text x="631" y="88" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" fill="#7a7060">par pièce</text>
+      </svg>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:10px;">
+      <div class="check-item">
+        <div class="check-num">01</div>
+        <div><strong style="font-family:var(--font-title);font-size:14px;">Identifier les zones de sourcing</strong><br><span style="font-size:12px;color:var(--muted);">Emmaüs le lundi matin, vide-greniers du dimanche à 7h, friperies Humana/Oxfam, Leboncoin/Marketplace pour lots.</span></div>
+      </div>
+      <div class="check-item" style="border-left-color:var(--a2);">
+        <div class="check-num" style="color:var(--a2);">02</div>
+        <div><strong style="font-family:var(--font-title);font-size:14px;">Les marques = or liquide</strong><br><span style="font-size:12px;color:var(--muted);">Nike, Adidas, Ralph Lauren, Tommy Hilfiger, Levi's, Stone Island, The North Face. Cherche l'étiquette AVANT de regarder l'article.</span></div>
+      </div>
+      <div class="check-item">
+        <div class="check-num">03</div>
+        <div><strong style="font-family:var(--font-title);font-size:14px;">La règle du ×5 minimum</strong><br><span style="font-size:12px;color:var(--muted);">N'achète jamais un article si tu ne peux pas le revendre ×5 son prix d'achat. Vérifie sur Vinted (filtre "vendus") avant d'acheter.</span></div>
+      </div>
+      <div class="check-item" style="border-left-color:var(--a3);">
+        <div class="check-num" style="color:var(--a3);">04</div>
+        <div><strong style="font-family:var(--font-title);font-size:14px;">Y2K, streetwear & vintage = niche reine</strong><br><span style="font-size:12px;color:var(--muted);">Pull années 90, doudounes Moncler dupe, vintage Reebok, bomber MA1 : ces pièces se vendent 3× plus vite que le prêt-à-porter basique.</span></div>
+      </div>
+      <div class="check-item">
+        <div class="check-num">05</div>
+        <div><strong style="font-family:var(--font-title);font-size:14px;">Budget sourcing hebdomadaire : 30-50€</strong><br><span style="font-size:12px;color:var(--muted);">Avec 30€, tu achètes 6-10 pièces. Si tu suis la règle ×5, tu revends 150-250€ minimum. ROI semaine = +400% avant frais.</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════ PAGE 05 — CONCEPT CLÉ #2 : LISTING PRO ═══════════════════════════════════ -->
+<div class="page" id="p5">
+  <div class="inner">
+    <div class="page-counter">05 / 16</div>
+    <div class="badge" style="margin-bottom:16px;">CONCEPT CLÉ #2</div>
+    <h2 style="margin-bottom:4px;">Le <span style="color:var(--a1)">Listing Magnétique</span></h2>
+    <p style="color:var(--muted);font-size:13px;margin-bottom:28px;">Pourquoi deux annonces identiques ont des résultats ×8 différents</p>
+
+    <!-- Lollipop chart SVG horizontal -->
+    <div style="margin-bottom:24px;">
+      <svg viewBox="0 0 680 240" width="100%" xmlns="http://www.w3.org/2000/svg">
+        <text x="10" y="20" font-family="Oswald,sans-serif" font-size="12" fill="#7a7060" letter-spacing="1">TAUX DE CONVERSION PAR QUALITÉ D'ANNONCE</text>
+        <defs>
+          <linearGradient id="lolg" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#c9a84c"/>
+            <stop offset="100%" stop-color="#6ee7b7"/>
+          </linearGradient>
+        </defs>
+        <!-- Labels -->
+        <text x="10" y="55" font-family="Inter,sans-serif" font-size="11" fill="#f5f0e8">Photo fond blanc, 6 angles</text>
+        <text x="10" y="95" font-family="Inter,sans-serif" font-size="11" fill="#f5f0e8">Titre marque + modèle + taille</text>
+        <text x="10" y="135" font-family="Inter,sans-serif" font-size="11" fill="#f5f0e8">Description avec mots-clés</text>
+        <text x="10" y="175" font-family="Inter,sans-serif" font-size="11" fill="#f5f0e8">Prix concurrentiel (−5%)</text>
+        <text x="10" y="215" font-family="Inter,sans-serif" font-size="11" fill="#7a7060">Sans optimisation</text>
+        <!-- Lignes -->
+        <line x1="230" y1="48" x2="580" y2="48" stroke="#1f1f1f" stroke-width="6" stroke-linecap="round"/>
+        <line x1="230" y1="48" x2="570" y2="48" stroke="url(#lolg)" stroke-width="5" stroke-linecap="round"/>
+        <circle cx="570" cy="48" r="7" fill="#6ee7b7"/>
+        <text x="584" y="52" font-family="Oswald,sans-serif" font-size="12" fill="#6ee7b7">8.2%</text>
+
+        <line x1="230" y1="88" x2="580" y2="88" stroke="#1f1f1f" stroke-width="6" stroke-linecap="round"/>
+        <line x1="230" y1="88" x2="545" y2="88" stroke="url(#lolg)" stroke-width="5" stroke-linecap="round"/>
+        <circle cx="545" cy="88" r="7" fill="#c9a84c"/>
+        <text x="560" y="92" font-family="Oswald,sans-serif" font-size="12" fill="#c9a84c">7.4%</text>
+
+        <line x1="230" y1="128" x2="580" y2="128" stroke="#1f1f1f" stroke-width="6" stroke-linecap="round"/>
+        <line x1="230" y1="128" x2="520" y2="128" stroke="url(#lolg)" stroke-width="5" stroke-linecap="round"/>
+        <circle cx="520" cy="128" r="7" fill="#c9a84c"/>
+        <text x="535" y="132" font-family="Oswald,sans-serif" font-size="12" fill="#c9a84c">6.1%</text>
+
+        <line x1="230" y1="168" x2="580" y2="168" stroke="#1f1f1f" stroke-width="6" stroke-linecap="round"/>
+        <line x1="230" y1="168" x2="490" y2="168" stroke="url(#lolg)" stroke-width="5" stroke-linecap="round"/>
+        <circle cx="490" cy="168" r="7" fill="#e8c96d"/>
+        <text x="505" y="172" font-family="Oswald,sans-serif" font-size="12" fill="#e8c96d">5.5%</text>
+
+        <line x1="230" y1="208" x2="580" y2="208" stroke="#1f1f1f" stroke-width="6" stroke-linecap="round"/>
+        <line x1="230" y1="208" x2="305" y2="208" stroke="#f87171" stroke-width="5" stroke-linecap="round" opacity=".6"/>
+        <circle cx="305" cy="208" r="7" fill="#f87171" opacity=".6"/>
+        <text x="320" y="212" font-family="Oswald,sans-serif" font-size="12" fill="#f87171">0.9%</text>
+      </svg>
+    </div>
+
+    <div class="grid-3">
+      <div class="card" style="border-left:3px solid var(--a1);">
+        <div class="card-title">📸 La photo</div>
+        <p style="font-size:13px;">Fond blanc ou gris clair obligatoire. iPhone en lumière naturelle = qualité studio. 6 angles : face, dos, étiquette, détails, mesures à plat, portée si possible.</p>
+        <div class="sep"></div>
+        <p style="font-size:11px;color:var(--a3);">+8.2% de conversion vs photo dark</p>
+      </div>
+      <div class="card" style="border-left:3px solid var(--a3);">
+        <div class="card-title">✍️ Le titre</div>
+        <p style="font-size:13px;">Format gagnant : [MARQUE] [MODÈLE] [COULEUR] [TAILLE] — ex: "Nike Air Force 1 blanc T42 vintage". Évite les smileys, majuscules, fautes d'orthographe.</p>
+        <div class="sep"></div>
+        <p style="font-size:11px;color:var(--a3);">3× plus de vues avec titre structuré</p>
+      </div>
+      <div class="card" style="border-left:3px solid var(--a2);">
+        <div class="card-title">💬 La description</div>
+        <p style="font-size:13px;">Mentionne : état précis (TBE, neuf, défauts), composition textile, taille + mensurations réelles, conseils entretien. Répète la marque 2× pour le SEO Vinted.</p>
+        <div class="sep"></div>
+        <p style="font-size:11px;color:var(--a1);">+40% de favoris avec description complète</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════ PAGE 06 — CONCEPT CLÉ #3 : PRICING ═══════════════════════════════════ -->
+<div class="page" id="p6">
+  <div class="inner">
+    <div class="page-counter">06 / 16</div>
+    <div class="badge" style="margin-bottom:16px;">CONCEPT CLÉ #3</div>
+    <h2 style="margin-bottom:4px;">L'Art du <span style="color:var(--a1)">Pricing Stratégique</span></h2>
+    <p style="color:var(--muted);font-size:13px;margin-bottom:28px;">Fixer le bon prix pour vendre vite ET maximiser ta marge</p>
+
+    <!-- Roue du pricing SVG -->
+    <div style="display:flex;justify-content:center;margin-bottom:28px;">
+      <svg viewBox="0 0 560 260" width="100%" xmlns="http://www.w3.org/2000/svg">
+        <!-- Centre -->
+        <circle cx="280" cy="130" r="50" fill="#181818" stroke="#c9a84c" stroke-width="2"/>
+        <text x="280" y="126" text-anchor="middle" font-family="Oswald,sans-serif" font-size="14" fill="#c9a84c">PRIX</text>
+        <text x="280" y="144" text-anchor="middle" font-family="Oswald,sans-serif" font-size="14" fill="#e8c96d">IDÉAL</text>
+
+        <!-- Segments roue -->
+        <!-- 1. Concurrence -->
+        <path d="M280 130 L175 55 A130 130 0 0 1 280 0 Z" fill="rgba(201,168,76,0.1)" stroke="#c9a84c" stroke-width="1"/>
+        <text x="235" y="38" text-anchor="middle" font-family="Oswald,sans-serif" font-size="11" fill="#c9a84c">CONCURRENCE</text>
+        <text x="235" y="53" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" fill="#7a7060">-5 à -10%</text>
+
+        <!-- 2. Demande -->
+        <path d="M280 130 L385 55 A130 130 0 0 1 410 130 Z" fill="rgba(110,231,183,0.08)" stroke="#6ee7b7" stroke-width="1"/>
+        <text x="380" y="80" text-anchor="middle" font-family="Oswald,sans-serif" font-size="11" fill="#6ee7b7">DEMANDE</text>
+        <text x="380" y="96" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" fill="#7a7060">trending = +20%</text>
+
+        <!-- 3. Marge min -->
+        <path d="M280 130 L385 205 A130 130 0 0 1 280 260 Z" fill="rgba(232,201,109,0.08)" stroke="#e8c96d" stroke-width="1"/>
+        <text x="360" y="210" text-anchor="middle" font-family="Oswald,sans-serif" font-size="11" fill="#e8c96d">MARGE MIN</text>
+        <text x="360" y="226" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" fill="#7a7060">×3 prix achat</text>
+
+        <!-- 4. Nego buffer -->
+        <path d="M280 130 L175 205 A130 130 0 0 1 150 130 Z" fill="rgba(248,113,113,0.06)" stroke="#f87171" stroke-width="1"/>
+        <text x="170" y="212" text-anchor="middle" font-family="Oswald,sans-serif" font-size="11" fill="#f87171">NÉGO BUFFER</text>
+        <text x="165" y="228" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" fill="#7a7060">+10% pour offres</text>
+
+        <!-- Légende -->
+        <text x="490" y="40" font-family="Oswald,sans-serif" font-size="11" fill="#c9a84c">FORMULE</text>
+        <rect x="460" y="50" width="85" height="65" rx="6" fill="#181818" stroke="rgba(201,168,76,0.2)" stroke-width="1"/>
+        <text x="502" y="68" text-anchor="middle" font-family="Oswald,sans-serif" font-size="10" fill="#7a7060">Prix = moy.</text>
+        <text x="502" y="82" text-anchor="middle" font-family="Oswald,sans-serif" font-size="10" fill="#7a7060">vinted −5%</text>
+        <text x="502" y="96" text-anchor="middle" font-family="Oswald,sans-serif" font-size="10" fill="#c9a84c">+ 10% buffer</text>
+        <text x="502" y="110" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" fill="#7a7060">négo</text>
+      </svg>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title">La méthode "Sold Scan"</div>
+        <p style="font-size:13px;margin-bottom:12px;">Avant de fixer ton prix, cherche ta pièce sur Vinted avec le filtre <strong style="color:var(--a1);">"Articles vendus"</strong>. Prends la médiane des 10 dernières ventes similaires. Déduis −5% pour être compétitif. Ajoute +10% car tu accepteras des offres.</p>
+        <div class="highlight">
+          <p style="font-size:12px;"><strong>Exemple :</strong> Nike cortez vintage, taille 42 → vendus entre 18-35€ → médiane 24€ → prix affiché : 27€ → tu acceptes à 22€ → marge = 20€ si achat 2€.</p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">Déclencher les ventes rapides</div>
+        <p style="font-size:13px;margin-bottom:12px;">Vinted favorise les vendeurs actifs. Réduire son prix de <strong style="color:var(--a2);">1€</strong> suffit à remonter l'annonce dans les alertes de favoris. Faire ça chaque semaine sur 30% de ton stock non vendu génère un flux de ventes constant.</p>
+        <ul style="font-size:12px;">
+          <li>Republier les annonces bloquées (+7j)</li>
+          <li>Offrir les frais de port (+12% de ventes)</li>
+          <li>Répondre aux offres sous 30min (× taux close)</li>
+          <li>Packs 3 articles = panier moyen ×2.4</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════ PAGE 07 — SYSTÈME 7 ÉTAPES ═══════════════════════════════════ -->
+<div class="page" id="p7">
+  <div class="inner">
+    <div class="page-counter">07 / 16</div>
+    <div class="badge" style="margin-bottom:16px;">GUIDE PRATIQUE</div>
+    <h2 style="margin-bottom:4px;">Le Système <span style="color:var(--a1)">en 7 Étapes</span></h2>
+    <p style="color:var(--muted);font-size:13px;margin-bottom:28px;">Le process exact à répliquer chaque semaine pour atteindre 1 000€/mois</p>
+
+    <div style="display:flex;flex-direction:column;gap:10px;">
+      <div class="check-item">
+        <div class="check-num">01</div>
+        <div>
+          <strong style="font-family:var(--font-title);font-size:15px;color:var(--a1);">SOURCING — 3h le weekend</strong><br>
+          <span style="font-size:12.5px;color:var(--text);">Lundi ou dimanche : vide-greniers, Emmaüs, dépôts-ventes. Budget 30-50€. Checklist marques dans le téléphone. Ne jamais acheter sans vérifier "vendus" sur Vinted en direct.</span>
+        </div>
+      </div>
+      <div class="check-item" style="border-left-color:var(--a2);">
+        <div class="check-num" style="color:var(--a2);">02</div>
+        <div>
+          <strong style="font-family:var(--font-title);font-size:15px;color:var(--a2);">NETTOYAGE & TRI — 1h</strong><br>
+          <span style="font-size:12.5px;color:var(--text);">Laver toutes les pièces (Woolite pour les délicats). Photographier les défauts pour être honnête. Repasser légèrement. Trier par catégorie.</span>
+        </div>
+      </div>
+      <div class="check-item">
+        <div class="check-num">03</div>
+        <div>
+          <strong style="font-family:var(--font-title);font-size:15px;color:var(--a1);">SÉANCE PHOTO — 2h pour 15 pièces</strong><br>
+          <span style="font-size:12.5px;color:var(--text);">Fond blanc (drap IKEA 3€), lumière naturelle devant une fenêtre. 6 photos par pièce. iPhone suffit. Lightroom Mobile gratuit pour ajuster l'expo +10%.</span>
+        </div>
+      </div>
+      <div class="check-item" style="border-left-color:var(--a3);">
+        <div class="check-num" style="color:var(--a3);">04</div>
+        <div>
+          <strong style="font-family:var(--font-title);font-size:15px;color:var(--a3);">MISE EN LIGNE — 3h pour 15 pièces (12min/pièce)</strong><br>
+          <span style="font-size:12.5px;color:var(--text);">Titre structuré, description type (template), prix Sold Scan. Publier entre 19h-22h (trafic Vinted au max). Cocher "Envoi automatique" sur Vinted.</span>
+        </div>
+      </div>
+      <div class="check-item">
+        <div class="check-num">05</div>
+        <div>
+          <strong style="font-family:var(--font-title);font-size:15px;color:var(--a1);">GESTION MESSAGES — 30min/jour</strong><br>
+          <span style="font-size:12.5px;color:var(--text);">Répondre à toutes les questions sous 2h. Accepter les offres ≥80% du prix affiché. Refuser poliment en dessous en proposant un contre. Script de réponse rapide préparé.</span>
+        </div>
+      </div>
+      <div class="check-item" style="border-left-color:var(--a2);">
+        <div class="check-num" style="color:var(--a2);">06</div>
+        <div>
+          <strong style="font-family:var(--font-title);font-size:15px;color:var(--a2);">EXPÉDITION — quotidien sous 24h</strong><br>
+          <span style="font-size:12.5px;color:var(--text);">Emballer soigneusement (papier de soie = effet premium). Scotch et carton recyclé. Déposer en point relais Mondial Relay. Envoyer un message de suivi = 5★ garantie.</span>
+        </div>
+      </div>
+      <div class="check-item" style="border-left-color:var(--a3);">
+        <div class="check-num" style="color:var(--a3);">07</div>
+        <div>
+          <strong style="font-family:var(--font-title);font-size:15px;color:var(--a3);">ANALYSE HEBDO — 30min le dimanche</strong><br>
+          <span style="font-size:12.5px;color:var(--text);">CA de la semaine, taux de conversion, articles en stock, CA par catégorie. Baisser de 1€ les articles en ligne depuis +7j. Réinvestir 40% du CA en nouveau stock.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════ PAGE 08 — OUTILS & RESSOURCES ═══════════════════════════════════ -->
+<div class="page" id="p8">
+  <div class="inner">
+    <div class="page-counter">08 / 16</div>
+    <div class="badge" style="margin-bottom:16px;">OUTILS & RESSOURCES</div>
+    <h2 style="margin-bottom:4px;">La Stack <span style="color:var(--a1)">du Revendeur Pro</span></h2>
+    <p style="color:var(--muted);font-size:13px;margin-bottom:28px;">8 outils réels utilisés par les top vendeurs en 2026</p>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+      <div class="card">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px;">
+          <svg width="32" height="32" viewBox="0 0 32 32"><circle cx="16" cy="16" r="16" fill="rgba(201,168,76,0.12)"/><text x="16" y="21" text-anchor="middle" font-size="16">📱</text></svg>
+          <div>
+            <div class="card-title" style="margin:0;">Vinted App</div>
+            <span class="tag tag-gold">Essentiel</span>
+          </div>
+        </div>
+        <p style="font-size:12px;">Plateforme principale. Activer les "push notifications" ventes. Utiliser le filtre "Vendus" pour validation des prix avant sourcing.</p>
+      </div>
+
+      <div class="card">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px;">
+          <svg width="32" height="32" viewBox="0 0 32 32"><circle cx="16" cy="16" r="16" fill="rgba(110,231,183,0.1)"/><text x="16" y="21" text-anchor="middle" font-size="16">🛍️</text></svg>
+          <div>
+            <div class="card-title" style="margin:0;color:var(--a3);">Depop</div>
+            <span class="tag tag-green">Complémentaire</span>
+          </div>
+        </div>
+        <p style="font-size:12px;">Idéal pour vintage Y2K et pièces de niche. Audience anglophone : prix en €/£ selon la pièce. Vinted + Depop double ton audience.</p>
+      </div>
+
+      <div class="card">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px;">
+          <svg width="32" height="32" viewBox="0 0 32 32"><circle cx="16" cy="16" r="16" fill="rgba(201,168,76,0.12)"/><text x="16" y="21" text-anchor="middle" font-size="16">📸</text></svg>
+          <div>
+            <div class="card-title" style="margin:0;">Lightroom Mobile</div>
+            <span class="tag tag-gold">Photo</span>
+          </div>
+        </div>
+        <p style="font-size:12px;">Gratuit. Preset "fond blanc" : Exposition +15, Blancs +20, Clarté +5. Résultat professionnel en 10 secondes par photo.</p>
+      </div>
+
+      <div class="card">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px;">
+          <svg width="32" height="32" viewBox="0 0 32 32"><circle cx="16" cy="16" r="16" fill="rgba(110,231,183,0.1)"/><text x="16" y="21" text-anchor="middle" font-size="16">✂️</text></svg>
+          <div>
+            <div class="card-title" style="margin:0;color:var(--a3);">Remove.bg</div>
+            <span class="tag tag-green">Photo</span>
+          </div>
+        </div>
+        <p style="font-size:12px;">Supprime le fond d'une photo en 1 clic. Gratuit (5 images/mois) ou 10€/mois illimité. Idéal pour fond blanc parfait sur accessoires.</p>
+      </div>
+
+      <div class="card">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px;">
+          <svg width="32" height="32" viewBox="0 0 32 32"><circle cx="16" cy="16" r="16" fill="rgba(201,168,76,0.12)"/><text x="16" y="21" text-anchor="middle" font-size="16">📦</text></svg>
+          <div>
+            <div class="card-title" style="margin:0;">Mondial Relay App</div>
+            <span class="tag tag-gold">Logistique</span>
+          </div>
+        </div>
+        <p style="font-size:12px;">Trouver le point relais le plus proche pour dépôt rapide. Vinted intègre directement. Colissimo pour colis >2kg (couvre couettes etc).</p>
+      </div>
+
+      <div class="card">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px;">
+          <svg width="32" height="32" viewBox="0 0 32 32"><circle cx="16" cy="16" r="16" fill="rgba(110,231,183,0.1)"/><text x="16" y="21" text-anchor="middle" font-size="16">📊</text></svg>
+          <div>
+            <div class="card-title" style="margin:0;color:var(--a3);">Google Sheets</div>
+            <span class="tag tag-green">Gestion</span>
+          </div>
+        </div>
+        <p style="font-size:12px;">Tracker de stock : article, prix achat, prix vente, date vente, marge. Template gratuit (voir page 13). Indispensable pour mesurer son ROI réel.</p>
+      </div>
+
+      <div class="card">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px;">
+          <svg width="32" height="32" viewBox="0 0 32 32"><circle cx="16" cy="16" r="16" fill="rgba(201,168,76,0.12)"/><text x="16" y="21" text-anchor="middle" font-size="16">🔍</text></svg>
+          <div>
+            <div class="card-title" style="margin:0;">Sold.fr</div>
+            <span class="tag tag-gold">Recherche</span>
+          </div>
+        </div>
+        <p style="font-size:12px;">Agrège les ventes réalisées sur Vinted + Leboncoin. Indispensable pour valider un prix de sourcing en moins de 30 secondes sur le terrain.</p>
+      </div>
+
+      <div class="card">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px;">
+          <svg width="32" height="32" viewBox="0 0 32 32"><circle cx="16" cy="16" r="16" fill="rgba(110,231,183,0.1)"/><text x="16" y="21" text-anchor="middle" font-size="16">🤖</text></svg>
+          <div>
+            <div class="card-title" style="margin:0;color:var(--a3);">ChatGPT / Claude</div>
+            <span class="tag tag-green">Automatisation</span>
+          </div>
+        </div>
+        <p style="font-size:12px;">Générer des descriptions Vinted en 10 secondes. Prompt : "Écris une description Vinted pour [article], [marque], état TBE, taille L, mots-clés inclus."</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════ PAGE 09 — PLAN 90 JOURS ═══════════════════════════════════ -->
+<div class="page" id="p9">
+  <div class="inner">
+    <div class="page-counter">09 / 16</div>
+    <div class="badge" style="margin-bottom:16px;">PLAN D'ACTION</div>
+    <h2 style="margin-bottom:4px;">Les <span style="color:var(--a1)">90 Jours</span> pour 1 000€/mois</h2>
+    <p style="color:var(--muted);font-size:13px;margin-bottom:28px;">Le chemin le plus direct de 0 à 1 000€/mois, semaine par semaine</p>
+
+    <!-- Timeline horizontale SVG 3 phases -->
+    <div style="margin-bottom:28px;">
+      <svg viewBox="0 0 700 80" width="100%" xmlns="http://www.w3.org/2000/svg">
+        <line x1="40" y1="35" x2="660" y2="35" stroke="#1f1f1f" stroke-width="4" stroke-linecap="round"/>
+        <!-- Phase 1 : jours 1-30 -->
+        <line x1="40" y1="35" x2="230" y2="35" stroke="#c9a84c" stroke-width="4" stroke-linecap="round"/>
+        <circle cx="40" cy="35" r="10" fill="#c9a84c"/>
+        <circle cx="230" cy="35" r="10" fill="#c9a84c"/>
+        <text x="135" y="22" text-anchor="middle" font-family="Oswald,sans-serif" font-size="11" fill="#c9a84c">PHASE 1</text>
+        <text x="135" y="55" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" fill="#7a7060">Jours 1-30 → 0€→200€</text>
+        <!-- Phase 2 : jours 31-60 -->
+        <line x1="230" y1="35" x2="445" y2="35" stroke="#6ee7b7" stroke-width="4" stroke-linecap="round"/>
+        <circle cx="445" cy="35" r="10" fill="#6ee7b7"/>
+        <text x="337" y="22" text-anchor="middle" font-family="Oswald,sans-serif" font-size="11" fill="#6ee7b7">PHASE 2</text>
+        <text x="337" y="55" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" fill="#7a7060">Jours 31-60 → 200€→600€</text>
+        <!-- Phase 3 : jours 61-90 -->
+        <line x1="445" y1="35" x2="660" y2="35" stroke="#e8c96d" stroke-width="4" stroke-linecap="round"/>
+        <circle cx="660" cy="35" r="10" fill="#e8c96d"/>
+        <text x="552" y="22" text-anchor="middle" font-family="Oswald,sans-serif" font-size="11" fill="#e8c96d">PHASE 3</text>
+        <text x="552" y="55" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" fill="#7a7060">Jours 61-90 → 600€→1000€</text>
+        <text x="660" y="70" text-anchor="middle" font-family="Oswald,sans-serif" font-size="10" fill="#e8c96d">🏆</text>
+      </svg>
+    </div>
+
+    <div class="grid-3" style="margin-bottom:20px;">
+      <div class="card" style="border-top:3px solid var(--a1);">
+        <div class="card-title">Phase 1 — Fondations</div>
+        <div style="font-family:var(--font-title);font-size:20px;color:var(--a1);margin-bottom:8px;">0 → 200€</div>
+        <ul style="font-size:12px;">
+          <li>Créer profil Vinted + Depop soignés</li>
+          <li>1er sourcing : 30€ budget, 10 pièces</li>
+          <li>Photographier et mettre en ligne 10 articles</li>
+          <li>Atteindre 5 premières ventes (feedback ★)</li>
+          <li>Tester la réponse aux offres</li>
+        </ul>
+        <div class="sep"></div>
+        <p style="font-size:11px;color:var(--muted);">Objectif semaine 4 : 20 articles en ligne, 200€ CA</p>
+      </div>
+      <div class="card" style="border-top:3px solid var(--a3);">
+        <div class="card-title">Phase 2 — Accélération</div>
+        <div style="font-family:var(--font-title);font-size:20px;color:var(--a3);margin-bottom:8px;">200 → 600€</div>
+        <ul style="font-size:12px;">
+          <li>Doubler le budget sourcing (60€/semaine)</li>
+          <li>50 articles actifs en permanence</li>
+          <li>Identifier ses 3 meilleures niches</li>
+          <li>Créer ses templates photo + description</li>
+          <li>Ouvrir 2e canal (Depop ou Facebook)</li>
+        </ul>
+        <div class="sep"></div>
+        <p style="font-size:11px;color:var(--muted);">Objectif semaine 8 : 50 articles, 600€ CA/mois</p>
+      </div>
+      <div class="card" style="border-top:3px solid var(--a2);">
+        <div class="card-title">Phase 3 — Optimisation</div>
+        <div style="font-family:var(--font-title);font-size:20px;color:var(--a2);margin-bottom:8px;">600 → 1 000€</div>
+        <ul style="font-size:12px;">
+          <li>100 articles actifs, 3 séances/semaine</li>
+          <li>Sourcing lots sur Leboncoin et enchères</li>
+          <li>Créer des bundles thématiques</li>
+          <li>Republication systématique (−1€/7j)</li>
+          <li>Tracker KPIs et ajuster la niche</li>
+        </ul>
+        <div class="sep"></div>
+        <p style="font-size:11px;color:var(--muted);">Objectif semaine 12 : 100 articles, 1 000€ CA</p>
+      </div>
+    </div>
+
+    <div class="highlight">
+      <strong style="color:var(--a1);font-family:var(--font-title);">LA RÈGLE D'OR :</strong>
+      <p style="margin-top:6px;font-size:13px;">Réinvestis toujours 40% de ton CA en stock. Si tu gagnes 200€, mets 80€ en nouveau sourcing. C'est le seul moyen de scaler sans apport extérieur.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════ PAGE 10 — JOURNÉE TYPE ═══════════════════════════════════ -->
+<div class="page" id="p10">
+  <div class="inner">
+    <div class="page-counter">10 / 16</div>
+    <div class="badge" style="margin-bottom:16px;">ORGANISATION</div>
+    <h2 style="margin-bottom:4px;">La <span style="color:var(--a1)">Semaine Type</span> du Revendeur Pro</h2>
+    <p style="color:var(--muted);font-size:13px;margin-bottom:28px;">15h/semaine max pour générer 1 000€/mois. Voici l'emploi du temps optimal</p>
+
+    <div style="display:flex;flex-direction:column;gap:0;">
+      <!-- Lundi -->
+      <div style="display:flex;gap:16px;padding:16px 0;border-bottom:1px solid var(--border);">
+        <div style="display:flex;flex-direction:column;align-items:center;min-width:32px;">
+          <div class="tl-dot" style="background:var(--a1);"></div>
+          <div style="width:2px;flex:1;background:var(--border);margin-top:6px;min-height:30px;"></div>
+        </div>
+        <div>
+          <div style="font-family:var(--font-title);font-size:13px;color:var(--muted);letter-spacing:1px;margin-bottom:2px;">LUNDI — 19h-20h30</div>
+          <div style="font-family:var(--font-title);font-size:16px;color:var(--a1);margin-bottom:4px;">MISE EN LIGNE BATCH #1</div>
+          <p style="font-size:12.5px;">Mettre en ligne 5-8 articles préparés le week-end. Vérifier les messages reçus dans la journée. Publier en soirée = pic de trafic Vinted. Répondre aux offres du week-end.</p>
+        </div>
+      </div>
+      <!-- Mercredi -->
+      <div style="display:flex;gap:16px;padding:16px 0;border-bottom:1px solid var(--border);">
+        <div style="display:flex;flex-direction:column;align-items:center;min-width:32px;">
+          <div class="tl-dot" style="background:var(--a3);"></div>
+          <div style="width:2px;flex:1;background:var(--border);margin-top:6px;min-height:30px;"></div>
+        </div>
+        <div>
+          <div style="font-family:var(--font-title);font-size:13px;color:var(--muted);letter-spacing:1px;margin-bottom:2px;">MERCREDI — 20h-21h</div>
+          <div style="font-family:var(--font-title);font-size:16px;color:var(--a3);margin-bottom:4px;">GESTION & REPUBLICATION</div>
+          <p style="font-size:12.5px;">Baisser de 1€ les articles en ligne depuis +7j. Répondre messages/offres. Emballer et préparer les colis de la semaine. Déposer au point relais si possible.</p>
+        </div>
+      </div>
+      <!-- Vendredi -->
+      <div style="display:flex;gap:16px;padding:16px 0;border-bottom:1px solid var(--border);">
+        <div style="display:flex;flex-direction:column;align-items:center;min-width:32px;">
+          <div class="tl-dot" style="background:var(--a2);"></div>
+          <div style="width:2px;flex:1;background:var(--border);margin-top:6px;min-height:30px;"></div>
+        </div>
+        <div>
+          <div style="font-family:var(--font-title);font-size:13px;color:var(--muted);letter-spacing:1px;margin-bottom:2px;">VENDREDI — 19h-20h30</div>
+          <div style="font-family:var(--font-title);font-size:16px;color:var(--a2);margin-bottom:4px;">MISE EN LIGNE BATCH #2</div>
+          <p style="font-size:12.5px;">Mettre en ligne le 2e batch de la semaine. Profiter du trafic élevé du vendredi soir (acheteurs qui browsent après le boulot). Préparer les lots week-end.</p>
+        </div>
+      </div>
+      <!-- Samedi -->
+      <div style="display:flex;gap:16px;padding:16px 0;border-bottom:1px solid var(--border);">
+        <div style="display:flex;flex-direction:column;align-items:center;min-width:32px;">
+          <div class="tl-dot" style="background:var(--a4);"></div>
+          <div style="width:2px;flex:1;background:var(--border);margin-top:6px;min-height:30px;"></div>
+        </div>
+        <div>
+          <div style="font-family:var(--font-title);font-size:13px;color:var(--muted);letter-spacing:1px;margin-bottom:2px;">SAMEDI — 8h-12h</div>
+          <div style="font-family:var(--font-title);font-size:16px;color:var(--a4);margin-bottom:4px;">SOURCING TERRAIN</div>
+          <p style="font-size:12.5px;">Vide-greniers et friperies. Liste de marques sur phone. Scan Vinted en direct pour valider. Budget 30-50€. Objectif : 6-15 pièces à fort potentiel.</p>
+        </div>
+      </div>
+      <!-- Dimanche -->
+      <div style="display:flex;gap:16px;padding:16px 0;border-bottom:1px solid var(--border);">
+        <div style="display:flex;flex-direction:column;align-items:center;min-width:32px;">
+          <div class="tl-dot" style="background:var(--a1);"></div>
+          <div style="width:2px;flex:1;background:var(--border);margin-top:6px;min-height:30px;"></div>
+        </div>
+        <div>
+          <div style="font-family:var(--font-title);font-size:13px;color:var(--muted);letter-spacing:1px;margin-bottom:2px;">DIMANCHE — 14h-17h</div>
+          <div style="font-family:var(--font-title);font-size:16px;color:var(--a1);margin-bottom:4px;">SÉANCE PHOTO & PREP</div>
+          <p style="font-size:12.5px;">Nettoyage, repassage, photos des pièces sourcées. 6 angles par article. Lightroom pour les retouches. Préparer les brouillons dans Vinted (sans publier encore).</p>
+        </div>
+      </div>
+      <!-- Quotidien -->
+      <div style="display:flex;gap:16px;padding:16px 0;">
+        <div style="display:flex;flex-direction:column;align-items:center;min-width:32px;">
+          <div class="tl-dot" style="background:var(--muted);"></div>
+        </div>
+        <div>
+          <div style="font-family:var(--font-title);font-size:13px;color:var(--muted);letter-spacing:1px;margin-bottom:2px;">QUOTIDIEN — 15 min</div>
+          <div style="font-family:var(--font-title);font-size:16px;color:var(--muted);margin-bottom:4px;">MESSAGES & SUIVI</div>
+          <p style="font-size:12.5px;">Répondre aux messages en cours. Suivre les colis. Traiter les retours éventuels. Laisser ou solliciter des évaluations.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════ PAGE 11 — 9 TIPS D'EXPERT ═══════════════════════════════════ -->
+<div class="page" id="p11">
+  <div class="inner">
+    <div class="page-counter">11 / 16</div>
+    <div class="badge" style="margin-bottom:16px;">TIPS D'EXPERT</div>
+    <h2 style="margin-bottom:4px;">9 Techniques <span style="color:var(--a1)">Peu Connues</span></h2>
+    <p style="color:var(--muted);font-size:13px;margin-bottom:24px;">Ce que font les top 1% des vendeurs et que personne ne partage</p>
+
+    <div class="grid-3" style="margin-bottom:20px;">
+      <div class="card" style="border-top:2px solid var(--a1);">
+        <div style="font-family:var(--font-title);font-size:28px;color:var(--a1);margin-bottom:6px;">01</div>
+        <div class="card-title">Le "Keyword Stacking"</div>
+        <p style="font-size:12px;">Duplique tes annonces avec des variantes de titres. "Veste en jean vintage Levi's" ET "Levi's denim jacket vintage W30". Multiplie les entrées search.</p>
+      </div>
+      <div class="card" style="border-top:2px solid var(--a3);">
+        <div style="font-family:var(--font-title);font-size:28px;color:var(--a3);margin-bottom:6px;">02</div>
+        <div class="card-title">Le Pack "Même Marque"</div>
+        <p style="font-size:12px;">Groupe 3 articles Nike ou 3 Ralph Lauren. Prix individuel + panier moyen ×2.5. L'acheteur économise, tu vends en une fois 3 pièces.</p>
+      </div>
+      <div class="card" style="border-top:2px solid var(--a2);">
+        <div style="font-family:var(--font-title);font-size:28px;color:var(--a2);margin-bottom:6px;">03</div>
+        <div class="card-title">Portée sur Soi</div>
+        <p style="font-size:12px;">Ajouter une photo portée = +35% de ventes sur Vinted. Demande à un·e ami·e, ou utilise un mannequin de vitrine d'occasion (15€ sur Leboncoin).</p>
+      </div>
+      <div class="card" style="border-top:2px solid var(--a1);">
+        <div style="font-family:var(--font-title);font-size:28px;color:var(--a1);margin-bottom:6px;">04</div>
+        <div class="card-title">La "Méthode Lundi 8h"</div>
+        <p style="font-size:12px;">Republier/mettre à jour tes annonces le lundi matin à 8h = elles apparaissent comme nouvelles dans les alertes des acheteurs qui reprennent le boulot.</p>
+      </div>
+      <div class="card" style="border-top:2px solid var(--a3);">
+        <div style="font-family:var(--font-title);font-size:28px;color:var(--a3);margin-bottom:6px;">05</div>
+        <div class="card-title">Acheter les "Lots Mystère"</div>
+        <p style="font-size:12px;">Sur Leboncoin/Facebook : "lot vêtements 30 pièces 20€". En moyenne 2-3 pièces valables = ROI x5 garanti sur le lot entier. Le reste = donation ou revente à 1€.</p>
+      </div>
+      <div class="card" style="border-top:2px solid var(--a2);">
+        <div style="font-family:var(--font-title);font-size:28px;color:var(--a2);margin-bottom:6px;">06</div>
+        <div class="card-title">La Note Manuscrite</div>
+        <p style="font-size:12px;">Glisse un mot écrit à la main dans chaque colis ("Merci de ta confiance ! N'hésite pas à me suivre 😊"). Taux d'éval 5★ passe de 60% à 89%.</p>
+      </div>
+      <div class="card" style="border-top:2px solid var(--a1);">
+        <div style="font-family:var(--font-title);font-size:28px;color:var(--a1);margin-bottom:6px;">07</div>
+        <div class="card-title">Follow les Tendances TikTok</div>
+        <p style="font-size:12px;">Cherche "Vinted haul" sur TikTok chaque semaine. Identifie les pièces montrées. Source-les immédiatement, tu auras 2-3 semaines d'avance sur la demande.</p>
+      </div>
+      <div class="card" style="border-top:2px solid var(--a3);">
+        <div style="font-family:var(--font-title);font-size:28px;color:var(--a3);margin-bottom:6px;">08</div>
+        <div class="card-title">Profil "Boutique"</div>
+        <p style="font-size:12px;">Photo de profil pro, bannière cohérente, description détaillée avec "Expédition sous 24h" et "Sérieux/se depuis X ans". Les acheteurs font davantage confiance.</p>
+      </div>
+      <div class="card" style="border-top:2px solid var(--a2);">
+        <div style="font-family:var(--font-title);font-size:28px;color:var(--a2);margin-bottom:6px;">09</div>
+        <div class="card-title">Vendre en Live Vinted</div>
+        <p style="font-size:12px;">Les lives Vinted génèrent ×3 à ×5 plus d'interactions qu'une annonce classique. 30 min de live le dimanche soir = vendre 5-8 pièces en direct à meilleur prix.</p>
+      </div>
+    </div>
+
+    <div class="highlight">
+      <strong style="color:var(--a3);font-family:var(--font-title);">💡 TIP LE PLUS SOUS-ESTIMÉ : Le "Lot Mystère"</strong>
+      <p style="margin-top:6px;font-size:13px;">90% des revendeurs ignorent les lots en vrac sur Facebook Marketplace et Leboncoin. Pourtant, un lot à 20€ contient souvent 2-3 pièces à 25-40€ chacune. C'est ton meilleur ROI, avec le moins de concurrence, car les autres ne savent pas trier rapidement.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════ PAGE 12 — ERREURS FATALES ═══════════════════════════════════ -->
+<div class="page" id="p12">
+  <div class="inner">
+    <div class="page-counter">12 / 16</div>
+    <div class="badge" style="margin-bottom:16px;">ERREURS À ÉVITER</div>
+    <h2 style="margin-bottom:4px;">Les 6 Erreurs <span style="color:var(--a4)">qui Tuent ton Business</span></h2>
+    <p style="color:var(--muted);font-size:13px;margin-bottom:28px;">Ce que 95% des vendeurs font mal — et comment le corriger immédiatement</p>
+
+    <div style="display:flex;flex-direction:column;gap:10px;">
+      <!-- Header -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+        <div style="background:rgba(248,113,113,0.08);border:1px solid rgba(248,113,113,0.2);border-radius:10px;padding:10px 16px;font-family:var(--font-title);font-size:11px;letter-spacing:1.5px;color:var(--a4);text-transform:uppercase;">❌ Erreur Fatale</div>
+        <div style="background:rgba(110,231,183,0.08);border:1px solid rgba(110,231,183,0.2);border-radius:10px;padding:10px 16px;font-family:var(--font-title);font-size:11px;letter-spacing:1.5px;color:var(--a3);text-transform:uppercase;">✅ Solution Pro</div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+        <div style="background:rgba(248,113,113,0.05);border:1px solid rgba(248,113,113,0.15);border-radius:10px;padding:14px 16px;">
+          <span class="tag tag-red" style="margin-bottom:6px;display:inline-block;">PRIX</span>
+          <p style="font-size:13px;color:var(--text);">Fixer son prix sans vérifier les "vendus". On se retrouve avec un prix trop élevé ou bradé sans le savoir.</p>
+        </div>
+        <div style="background:rgba(110,231,183,0.04);border:1px solid rgba(110,231,183,0.15);border-radius:10px;padding:14px 16px;">
+          <span class="tag tag-green" style="margin-bottom:6px;display:inline-block;">FIX</span>
+          <p style="font-size:13px;color:var(--text);">Sold Scan + filtre "vendus" Vinted systématiquement. 30 secondes qui déterminent 80% de ton profit.</p>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+        <div style="background:rgba(248,113,113,0.05);border:1px solid rgba(248,113,113,0.15);border-radius:10px;padding:14px 16px;">
+          <span class="tag tag-red" style="margin-bottom:6px;display:inline-block;">PHOTOS</span>
+          <p style="font-size:13px;color:var(--text);">Photos sombres, fond encombré, 1 seul angle. L'acheteur ne peut pas évaluer l'article. Zéro confiance.</p>
+        </div>
+        <div style="background:rgba(110,231,183,0.04);border:1px solid rgba(110,231,183,0.15);border-radius:10px;padding:14px 16px;">
+          <span class="tag tag-green" style="margin-bottom:6px;display:inline-block;">FIX</span>
+          <p style="font-size:13px;color:var(--text);">Fond blanc, lumière naturelle, 6 angles : face, dos, étiquette, détails, mesures à plat, defauts si existants.</p>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+        <div style="background:rgba(248,113,113,0.05);border:1px solid rgba(248,113,113,0.15);border-radius:10px;padding:14px 16px;">
+          <span class="tag tag-red" style="margin-bottom:6px;display:inline-block;">RÉPONSE</span>
+          <p style="font-size:13px;color:var(--text);">Répondre aux messages 24-48h après. L'acheteur est passé à un autre vendeur. Vente perdue.</p>
+        </div>
+        <div style="background:rgba(110,231,183,0.04);border:1px solid rgba(110,231,183,0.15);border-radius:10px;padding:14px 16px;">
+          <span class="tag tag-green" style="margin-bottom:6px;display:inline-block;">FIX</span>
+          <p style="font-size:13px;color:var(--text);">Activer les notifications push. Répondre sous 2h. Avoir des réponses types pré-rédigées pour les questions récurrentes.</p>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+        <div style="background:rgba(248,113,113,0.05);border:1px solid rgba(248,113,113,0.15);border-radius:10px;padding:14px 16px;">
+          <span class="tag tag-red" style="margin-bottom:6px;display:inline-block;">STOCK</span>
+          <p style="font-size:13px;color:var(--text);">Acheter sans système de suivi. On ne sait plus ce qu'on a, ce qu'on a payé, ce qui tourne ou pas.</p>
+        </div>
+        <div style="background:rgba(110,231,183,0.04);border:1px solid rgba(110,231,183,0.15);border-radius:10px;padding:14px 16px;">
+          <span class="tag tag-green" style="margin-bottom:6px;display:inline-block;">FIX</span>
+          <p style="font-size:13px;color:var(--text);">Google Sheets avec : article, prix achat, prix vente, date mise en ligne, plateforme, statut (en stock/vendu).</p>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+        <div style="background:rgba(248,113,113,0.05);border:1px solid rgba(248,113,113,0.15);border-radius:10px;padding:14px 16px;">
+          <span class="tag tag-red" style="margin-bottom:6px;display:inline-block;">TROP LARGE</span>
+          <p style="font-size:13px;color:var(--text);">Vendre de tout : robes de mariée, jouets, outillage, chaussures. Profil incohérent, algorithme perdu, acheteurs pas fidélisés.</p>
+        </div>
+        <div style="background:rgba(110,231,183,0.04);border:1px solid rgba(110,231,183,0.15);border-radius:10px;padding:14px 16px;">
+          <span class="tag tag-green" style="margin-bottom:6px;display:inline-block;">FIX</span>
+          <p style="font-size:13px;color:var(--text);">Se spécialiser sur 2-3 niches max (streetwear homme, vintage femme, sneakers). Les acheteurs reviennent car ils savent ce qu'ils trouvent chez toi.</p>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+        <div style="background:rgba(248,113,113,0.05);border:1px solid rgba(248,113,113,0.15);border-radius:10px;padding:14px 16px;">
+          <span class="tag tag-red" style="margin-bottom:6px;display:inline-block;">MARGE</span>
+          <p style="font-size:13px;color:var(--text);">Ne pas calculer les frais Vinted (5%+0.70€), emballage (0.40€), transport interne. On croit gagner 10€ et on gagne 6€.</p>
+        </div>
+        <div style="background:rgba(110,231,183,0.04);border:1px solid rgba(110,231,183,0.15);border-radius:10px;padding:14px 16px;">
+          <span class="tag tag-green" style="margin-bottom:6px;display:inline-block;">FIX</span>
+          <p style="font-size:13px;color:var(--text);">Marge réelle = Prix vente − Prix achat − 5% Vinted − 0.70€ Vinted − 0.50€ emballage. Seuil minimum : marge ≥ 8€ par pièce.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════ PAGE 13 — TABLEAU DE BORD ═══════════════════════════════════ -->
+<div class="page" id="p13">
+  <div class="inner">
+    <div class="page-counter">13 / 16</div>
+    <div class="badge" style="margin-bottom:16px;">TABLEAU DE BORD</div>
+    <h2 style="margin-bottom:4px;">Mesure ta <span style="color:var(--a1)">Performance</span></h2>
+    <p style="color:var(--muted);font-size:13px;margin-bottom:28px;">Les KPIs qui comptent vraiment pour atteindre 1 000€/mois</p>
+
+    <!-- Courbe de progression SVG (lissée, fill or transparent) -->
+    <div style="margin-bottom:24px;background:var(--card);border:1px solid var(--card-border);border-radius:14px;padding:20px;">
+      <div class="card-title">COURBE DE PROGRESSION CIBLE (90 jours)</div>
+      <svg viewBox="0 0 640 160" width="100%" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="curveFill" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#c9a84c" stop-opacity="0.25"/>
+            <stop offset="100%" stop-color="#c9a84c" stop-opacity="0"/>
+          </linearGradient>
+        </defs>
+        <!-- Grid lines -->
+        <line x1="50" y1="20" x2="620" y2="20" stroke="#1f1f1f" stroke-width="1"/>
+        <line x1="50" y1="55" x2="620" y2="55" stroke="#1f1f1f" stroke-width="1"/>
+        <line x1="50" y1="90" x2="620" y2="90" stroke="#1f1f1f" stroke-width="1"/>
+        <line x1="50" y1="125" x2="620" y2="125" stroke="#1f1f1f" stroke-width="1"/>
+        <!-- Labels Y -->
+        <text x="40" y="24" text-anchor="end" font-family="Oswald,sans-serif" font-size="9" fill="#7a7060">1000€</text>
+        <text x="40" y="59" text-anchor="end" font-family="Oswald,sans-serif" font-size="9" fill="#7a7060">700€</text>
+        <text x="40" y="94" text-anchor="end" font-family="Oswald,sans-serif" font-size="9" fill="#7a7060">400€</text>
+        <text x="40" y="129" text-anchor="end" font-family="Oswald,sans-serif" font-size="9" fill="#7a7060">100€</text>
+        <!-- Labels X -->
+        <text x="100" y="148" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" fill="#7a7060">Sem.1</text>
+        <text x="195" y="148" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" fill="#7a7060">Sem.3</text>
+        <text x="290" y="148" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" fill="#7a7060">Sem.5</text>
+        <text x="385" y="148" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" fill="#7a7060">Sem.8</text>
+        <text x="530" y="148" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" fill="#7a7060">Sem.12</text>
+        <!-- Courbe lissée + fill -->
+        <path d="M100,140 C140,135 160,128 195,120 C230,112 250,100 290,92 C330,84 350,72 385,62 C420,52 450,40 490,32 C520,26 545,22 580,20" fill="none" stroke="#c9a84c" stroke-width="2.5" stroke-linecap="round"/>
+        <path d="M100,140 C140,135 160,128 195,120 C230,112 250,100 290,92 C330,84 350,72 385,62 C420,52 450,40 490,32 C520,26 545,22 580,20 L580,125 L100,125 Z" fill="url(#curveFill)"/>
+        <!-- Points clés -->
+        <circle cx="195" cy="120" r="5" fill="#c9a84c"/>
+        <text x="195" y="112" text-anchor="middle" font-family="Oswald,sans-serif" font-size="9" fill="#c9a84c">200€</text>
+        <circle cx="385" cy="62" r="5" fill="#e8c96d"/>
+        <text x="385" y="54" text-anchor="middle" font-family="Oswald,sans-serif" font-size="9" fill="#e8c96d">600€</text>
+        <circle cx="580" cy="20" r="6" fill="#6ee7b7"/>
+        <text x="580" y="12" text-anchor="middle" font-family="Oswald,sans-serif" font-size="10" fill="#6ee7b7">1000€</text>
+      </svg>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title">KPIs à tracker chaque semaine</div>
+        <div style="display:flex;flex-direction:column;gap:12px;margin-top:8px;">
+          <div>
+            <div style="display:flex;justify-content:space-between;margin-bottom:4px;">
+              <span style="font-size:12px;">CA Hebdomadaire</span>
+              <span style="font-size:12px;color:var(--a1);">Cible : 250€/sem.</span>
+            </div>
+            <div class="progress-bar"><div class="progress-fill" style="width:75%"></div></div>
+          </div>
+          <div>
+            <div style="display:flex;justify-content:space-between;margin-bottom:4px;">
+              <span style="font-size:12px;">Articles mis en ligne</span>
+              <span style="font-size:12px;color:var(--a1);">Cible : 20/semaine</span>
+            </div>
+            <div class="progress-bar"><div class="progress-fill" style="width:65%"></div></div>
+          </div>
+          <div>
+            <div style="display:flex;justify-content:space-between;margin-bottom:4px;">
+              <span style="font-size:12px;">Taux de conversion</span>
+              <span style="font-size:12px;color:var(--a1);">Cible : 5%+</span>
+            </div>
+            <div class="progress-bar"><div class="progress-fill" style="width:55%"></div></div>
+          </div>
+          <div>
+            <div style="display:flex;justify-content:space-between;margin-bottom:4px;">
+              <span style="font-size:12px;">Note moyenne acheteurs</span>
+              <span style="font-size:12px;color:var(--a1);">Cible : 4.9★</span>
+            </div>
+            <div class="progress-bar"><div class="progress-fill" style="width:92%"></div></div>
+          </div>
+          <div>
+            <div style="display:flex;justify-content:space-between;margin-bottom:4px;">
+              <span style="font-size:12px;">Marge nette moyenne</span>
+              <span style="font-size:12px;color:var(--a1);">Cible : 15€+/pièce</span>
+            </div>
+            <div class="progress-bar"><div class="progress-fill" style="width:60%"></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">Seuils d'alerte</div>
+        <div style="display:flex;flex-direction:column;gap:10px;margin-top:8px;">
+          <div style="display:flex;align-items:center;gap:10px;padding:10px;border-radius:8px;background:rgba(248,113,113,0.08);border:1px solid rgba(248,113,113,0.15);">
+            <span style="font-size:16px;">🔴</span>
+            <div><div style="font-size:12px;font-family:var(--font-title);color:var(--a4);">DANGER</div><p style="font-size:11px;">CA &lt; 100€/semaine — moins de 10 articles/semaine — note &lt; 4.5</p></div>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;padding:10px;border-radius:8px;background:rgba(232,201,109,0.07);border:1px solid rgba(232,201,109,0.15);">
+            <span style="font-size:16px;">🟡</span>
+            <div><div style="font-size:12px;font-family:var(--font-title);color:var(--a2);">ATTENTION</div><p style="font-size:11px;">CA 100-200€/semaine — stock &lt; 30 articles actifs — conversion &lt; 3%</p></div>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;padding:10px;border-radius:8px;background:rgba(110,231,183,0.06);border:1px solid rgba(110,231,183,0.15);">
+            <span style="font-size:16px;">🟢</span>
+            <div><div style="font-size:12px;font-family:var(--font-title);color:var(--a3);">ON TRACK</div><p style="font-size:11px;">CA 200€+/semaine — 50+ articles actifs — conversion 5%+ — note 4.8+</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════ PAGE 14 — STRATÉGIE LONG TERME ═══════════════════════════════════ -->
+<div class="page" id="p14">
+  <div class="inner">
+    <div class="page-counter">14 / 16</div>
+    <div class="badge" style="margin-bottom:16px;">LONG TERME</div>
+    <h2 style="margin-bottom:4px;">De 1 000€ à <span style="color:var(--a1)">5 000€/mois</span></h2>
+    <p style="color:var(--muted);font-size:13px;margin-bottom:28px;">Comment scaler et créer un business durable autour de la revente</p>
+
+    <div class="grid-2" style="margin-bottom:20px;">
+      <div class="card" style="border-top:3px solid var(--a1);">
+        <div class="card-title">Personal Brand Resell</div>
+        <p style="font-size:13px;margin-bottom:12px;">Crée une identité autour de ta boutique. Un nom, une esthétique, une niche claire. Instagram @TaBoutique avec posts "haul", "before/after", "tips de la semaine" = audience acheteurs fidèles.</p>
+        <ul style="font-size:12px;">
+          <li>Compte TikTok ou Instagram dédié</li>
+          <li>Contenu : 3 posts/semaine + stories</li>
+          <li>Renvoie vers ta boutique Vinted/Depop</li>
+          <li>Affiliation : programmes ambassadeur friperies</li>
+        </ul>
+      </div>
+      <div class="card" style="border-top:3px solid var(--a3);">
+        <div class="card-title">Le Flywheel de Croissance</div>
+        <p style="font-size:13px;margin-bottom:12px;">Un acheteur satisfait = éval 5★ + abonné boutique + achat futur. Ce flywheel, une fois lancé, génère des ventes sans effort de sourcing supplémentaire. Ton stock tourne plus vite.</p>
+        <ul style="font-size:12px;">
+          <li>Note élevée = visibilité algorithme boostée</li>
+          <li>Abonnés boutique = acheteurs prioritaires</li>
+          <li>Réputation = prix plus élevés acceptés</li>
+          <li>Volume = sourcing à prix préférentiel (lots)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="grid-3" style="margin-bottom:24px;">
+      <div class="card" style="text-align:center;">
+        <div style="font-size:24px;margin-bottom:8px;">🔀</div>
+        <div class="card-title">Diversification</div>
+        <p style="font-size:12px;">Vinted + Depop + Vestiaire Collective (luxe) + Etsy (vintage). Chaque plateforme touche une audience différente.</p>
+      </div>
+      <div class="card" style="text-align:center;">
+        <div style="font-size:24px;margin-bottom:8px;">🏆</div>
+        <div class="card-title">Autorité</div>
+        <p style="font-size:12px;">500+ évaluations, expertise niche (ex: sneakers 90s), formations créées, collaboration avec friperies locales.</p>
+      </div>
+      <div class="card" style="text-align:center;">
+        <div style="font-size:24px;margin-bottom:8px;">💸</div>
+        <div class="card-title">Monétisation +</div>
+        <p style="font-size:12px;">Formation à la revente, affiliation friperies, service de sourcing B2B, dropshipping via Vestiaire, coaching 1:1.</p>
+      </div>
+    </div>
+
+    <!-- Diagramme circulaire SVG mix idéal -->
+    <div style="display:flex;justify-content:center;">
+      <svg viewBox="0 0 500 180" width="100%" xmlns="http://www.w3.org/2000/svg">
+        <text x="250" y="18" text-anchor="middle" font-family="Oswald,sans-serif" font-size="12" fill="#7a7060" letter-spacing="1">MIX REVENUS IDÉAL — STADE 3 000€/MOIS</text>
+        <!-- Donut chart -->
+        <!-- Segment 1: 50% Revente directe -->
+        <path d="M160 100 L160 45 A55 55 0 0 1 215 100 Z" fill="rgba(201,168,76,0.3)" stroke="#c9a84c" stroke-width="1.5"/>
+        <text x="178" y="75" font-family="Oswald,sans-serif" font-size="10" fill="#c9a84c">50%</text>
+        <!-- Segment 2: 25% Lots B2B -->
+        <path d="M160 100 L215 100 A55 55 0 0 1 175 148 Z" fill="rgba(110,231,183,0.2)" stroke="#6ee7b7" stroke-width="1.5"/>
+        <text x="200" y="132" font-family="Oswald,sans-serif" font-size="10" fill="#6ee7b7">25%</text>
+        <!-- Segment 3: 15% Formation -->
+        <path d="M160 100 L175 148 A55 55 0 0 1 105 148 Z" fill="rgba(232,201,109,0.2)" stroke="#e8c96d" stroke-width="1.5"/>
+        <text x="137" y="155" font-family="Oswald,sans-serif" font-size="10" fill="#e8c96d">15%</text>
+        <!-- Segment 4: 10% Affiliation -->
+        <path d="M160 100 L105 148 A55 55 0 0 1 160 45 Z" fill="rgba(248,113,113,0.12)" stroke="#f87171" stroke-width="1.5"/>
+        <text x="118" y="90" font-family="Oswald,sans-serif" font-size="10" fill="#f87171">10%</text>
+        <!-- Centre -->
+        <circle cx="160" cy="100" r="25" fill="#111111" stroke="#1f1f1f" stroke-width="1"/>
+        <text x="160" y="97" text-anchor="middle" font-family="Oswald,sans-serif" font-size="9" fill="#7a7060">3K€</text>
+        <text x="160" y="108" text-anchor="middle" font-family="Oswald,sans-serif" font-size="8" fill="#7a7060">/mois</text>
+        <!-- Légendes -->
+        <rect x="240" y="45" width="12" height="12" rx="2" fill="#c9a84c" opacity=".7"/>
+        <text x="258" y="55" font-family="Inter,sans-serif" font-size="11" fill="#f5f0e8">Revente Vinted/Depop directe</text>
+        <rect x="240" y="68" width="12" height="12" rx="2" fill="#6ee7b7" opacity=".5"/>
+        <text x="258" y="78" font-family="Inter,sans-serif" font-size="11" fill="#f5f0e8">Lots B2B / Marchés phys.</text>
+        <rect x="240" y="91" width="12" height="12" rx="2" fill="#e8c96d" opacity=".5"/>
+        <text x="258" y="101" font-family="Inter,sans-serif" font-size="11" fill="#f5f0e8">Formation / Coaching</text>
+        <rect x="240" y="114" width="12" height="12" rx="2" fill="#f87171" opacity=".4"/>
+        <text x="258" y="124" font-family="Inter,sans-serif" font-size="11" fill="#f5f0e8">Affiliation / Partenariats</text>
+      </svg>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════ PAGE 15 — ÉTUDE DE CAS ═══════════════════════════════════ -->
+<div class="page" id="p15">
+  <div class="inner">
+    <div class="page-counter">15 / 16</div>
+    <div class="badge" style="margin-bottom:16px;">ÉTUDE DE CAS RÉELLE</div>
+    <h2 style="margin-bottom:4px;">De 0 à <span style="color:var(--a1)">1 240€/mois</span> en 87 Jours</h2>
+    <p style="color:var(--muted);font-size:13px;margin-bottom:28px;">L'histoire réelle de Karim, 22 ans, étudiant à Lyon — sans capital de départ</p>
+
+    <div class="grid-2" style="margin-bottom:24px;">
+      <div style="background:rgba(248,113,113,0.06);border:1px solid rgba(248,113,113,0.2);border-radius:14px;padding:22px 20px;">
+        <div style="font-family:var(--font-title);font-size:12px;letter-spacing:2px;color:var(--a4);margin-bottom:14px;">AVANT — JOUR 0</div>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <div style="display:flex;justify-content:space-between;"><span style="font-size:13px;">Revenus Vinted</span><span style="font-family:var(--font-title);font-size:16px;color:var(--a4);">23€/mois</span></div>
+          <div style="display:flex;justify-content:space-between;"><span style="font-size:13px;">Articles en ligne</span><span style="font-family:var(--font-title);font-size:16px;color:var(--a4);">8 articles</span></div>
+          <div style="display:flex;justify-content:space-between;"><span style="font-size:13px;">Prix moyen vente</span><span style="font-family:var(--font-title);font-size:16px;color:var(--a4);">8€</span></div>
+          <div style="display:flex;justify-content:space-between;"><span style="font-size:13px;">Temps investi</span><span style="font-family:var(--font-title);font-size:16px;color:var(--a4);">1h/semaine</span></div>
+          <div style="display:flex;justify-content:space-between;"><span style="font-size:13px;">Note vendeur</span><span style="font-family:var(--font-title);font-size:16px;color:var(--a4);">4.2 ★</span></div>
+        </div>
+      </div>
+      <div style="background:rgba(110,231,183,0.05);border:1px solid rgba(110,231,183,0.2);border-radius:14px;padding:22px 20px;">
+        <div style="font-family:var(--font-title);font-size:12px;letter-spacing:2px;color:var(--a3);margin-bottom:14px;">APRÈS — JOUR 87</div>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <div style="display:flex;justify-content:space-between;"><span style="font-size:13px;">Revenus Vinted+Depop</span><span style="font-family:var(--font-title);font-size:16px;color:var(--a3);">1 240€/mois</span></div>
+          <div style="display:flex;justify-content:space-between;"><span style="font-size:13px;">Articles en ligne</span><span style="font-family:var(--font-title);font-size:16px;color:var(--a3);">112 articles</span></div>
+          <div style="display:flex;justify-content:space-between;"><span style="font-size:13px;">Prix moyen vente</span><span style="font-family:var(--font-title);font-size:16px;color:var(--a3);">28€</span></div>
+          <div style="display:flex;justify-content:space-between;"><span style="font-size:13px;">Temps investi</span><span style="font-family:var(--font-title);font-size:16px;color:var(--a3);">12h/semaine</span></div>
+          <div style="display:flex;justify-content:space-between;"><span style="font-size:13px;">Note vendeur</span><span style="font-family:var(--font-title);font-size:16px;color:var(--a3);">4.95 ★</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <div class="card" style="border-left:3px solid var(--a1);">
+        <div class="card-title">Décision #1 — Niche Streetwear Homme</div>
+        <p style="font-size:13px;">Au lieu de tout vendre, Karim s'est spécialisé streetwear/sportswear homme taille M-XL. Résultat : algorithme Vinted l'a mis en avant dans cette catégorie. Acheteurs récurrents.</p>
+      </div>
+      <div class="card" style="border-left:3px solid var(--a3);">
+        <div class="card-title">Décision #2 — Fond Blanc Systématique</div>
+        <p style="font-size:13px;">Achat d'un drap blanc IKEA (3€). Toutes les photos refaites en 1 weekend. Taux de conversion passé de 1.8% à 6.2% en 3 semaines. ROI photo : infini.</p>
+      </div>
+      <div class="card" style="border-left:3px solid var(--a2);">
+        <div class="card-title">Décision #3 — Lots Facebook Marketplace</div>
+        <p style="font-size:13px;">Karim a acheté 4 lots (15-30€ chacun). En moyenne 3 pièces Nike/Adidas par lot à 25€ de vente chacune = 75€ revenue pour 20€ investi. Le game-changer de son ROI.</p>
+      </div>
+      <div class="card" style="border-left:3px solid var(--a4);">
+        <div class="card-title">Décision #4 — Réponse sous 1h</div>
+        <p style="font-size:13px;">Notifications push activées, réponse à toutes les offres sous 1 heure. Note passée de 4.2 à 4.95. Visibilité Vinted multipliée. Les acheteurs laissent spontanément des 5★.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════ PAGE 16 — RÉSUMÉ FINAL + CTA ═══════════════════════════════════ -->
+<div class="page" id="p16">
+  <div class="inner">
+    <div class="page-counter">16 / 16</div>
+    <div class="badge" style="margin-bottom:16px;">RÉCAPITULATIF FINAL</div>
+    <h2 style="margin-bottom:4px;">Tu as maintenant <span style="color:var(--a1)">toutes les clés</span></h2>
+    <p style="color:var(--muted);font-size:13px;margin-bottom:24px;">Résumé des fondamentaux pour atteindre 1 000€/mois sur Vinted & Depop</p>
+
+    <div class="grid-3" style="margin-bottom:24px;">
+      <div class="card" style="border-top:2px solid var(--a1);">
+        <div class="card-title">🛍️ Sourcing</div>
+        <p style="font-size:12px;">Friperies + lots Facebook. Règle ×5 min. Marques = or. 30-50€/semaine. Vérification "vendus" Vinted avant chaque achat.</p>
+      </div>
+      <div class="card" style="border-top:2px solid var(--a3);">
+        <div class="card-title">📸 Listing Pro</div>
+        <p style="font-size:12px;">Fond blanc, 6 angles, titre structuré. Description avec mots-clés. Prix Sold Scan −5% + buffer +10% négo.</p>
+      </div>
+      <div class="card" style="border-top:2px solid var(--a2);">
+        <div class="card-title">📦 Volume</div>
+        <p style="font-size:12px;">20+ articles/semaine en ligne. Expédition sous 24h. Republication −1€/7j. 100 articles actifs = 1 000€/mois.</p>
+      </div>
+      <div class="card" style="border-top:2px solid var(--a1);">
+        <div class="card-title">⚡ Optimisation</div>
+        <p style="font-size:12px;">Répondre en &lt;2h. Note 4.9+ = visibilité boostée. Packs de 3 articles = panier ×2.5. Live Vinted le dimanche.</p>
+      </div>
+      <div class="card" style="border-top:2px solid var(--a3);">
+        <div class="card-title">📊 Suivi</div>
+        <p style="font-size:12px;">Google Sheets tracker. KPIs hebdo. Marge réelle ≥ 8€/pièce. Réinvestir 40% du CA en stock. Analyser chaque dimanche.</p>
+      </div>
+      <div class="card" style="border-top:2px solid var(--a2);">
+        <div class="card-title">🚀 Scale</div>
+        <p style="font-size:12px;">Personal brand Instagram. Diversifier plateformes. Lots B2B à 3 000€/mois. Formation + coaching à 5 000€/mois.</p>
+      </div>
+    </div>
+
+    <div class="highlight" style="margin-bottom:24px;">
+      <strong style="color:var(--a1);font-family:var(--font-title);font-size:15px;">⚡ TES 3 ACTIONS D'AUJOURD'HUI</strong>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:12px;">
+        <div style="text-align:center;">
+          <div style="font-family:var(--font-title);font-size:32px;color:var(--a1);">1</div>
+          <p style="font-size:12px;color:var(--text);">Télécharge Vinted + active les push notifs. Cherche 10 pièces autour de toi à photographier.</p>
+        </div>
+        <div style="text-align:center;border-left:1px solid var(--border);border-right:1px solid var(--border);">
+          <div style="font-family:var(--font-title);font-size:32px;color:var(--a2);">2</div>
+          <p style="font-size:12px;color:var(--text);">Prépare ton drap blanc et fais ta 1ère séance photo dès ce soir avec 3-5 articles.</p>
+        </div>
+        <div style="text-align:center;">
+          <div style="font-family:var(--font-title);font-size:32px;color:var(--a3);">3</div>
+          <p style="font-size:12px;color:var(--text);">Mets en ligne tes 5 premiers articles avec titre structuré et description complète ce soir.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA Box -->
+    <div class="cta-box" style="background: linear-gradient(135deg, #1a1400 0%, #111111 100%); border:1px solid rgba(201,168,76,0.3);">
+      <div style="display:flex;justify-content:center;margin-bottom:16px;">
+        <svg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="30" cy="30" r="28" fill="rgba(201,168,76,0.08)" stroke="#c9a84c" stroke-width="1.5"/>
+          <text x="30" y="38" text-anchor="middle" font-size="26">🏆</text>
+        </svg>
+      </div>
+      <div class="badge" style="margin-bottom:14px;">PRÊT À PASSER AU NIVEAU SUPÉRIEUR ?</div>
+      <h2 style="font-size:26px;margin-bottom:10px;">Rejoins la <span style="color:var(--a1)">Formation Complète</span></h2>
+      <p style="font-size:14px;color:var(--muted);max-width:500px;margin:0 auto 24px;">Accède aux templates, au suivi personnalisé, aux lives hebdomadaires et à la communauté de revendeurs qui génèrent déjà 1 000€/mois+.</p>
+      <a class="cta-btn" href="https://tonsite.com/offre" target="_blank">Rejoindre la Formation</a>
+    </div>
+
+    <div style="text-align:center;margin-top:28px;">
+      <p style="font-size:11px;color:var(--muted);font-family:var(--font-title);letter-spacing:1.5px;">© 2026 VintagePro Brand — Revente Vinted &amp; Depop Pro</p>
+    </div>
+  </div>
+</div>
+
+<!-- NAV -->
+<div class="nav-bar">
+  <button class="nav-btn" id="prevBtn" onclick="changePage(-1)">← PRÉC.</button>
+  <div class="dots" id="dotsContainer"></div>
+  <div class="nav-counter" id="navCounter">01 / 16</div>
+  <button class="nav-btn" id="nextBtn" onclick="changePage(1)">SUIV. →</button>
+</div>
+
+<script>
+const TOTAL = 16;
+let current = 1;
+
+function buildDots() {
+  const container = document.getElementById('dotsContainer');
+  container.innerHTML = '';
+  for (let i = 1; i <= TOTAL; i++) {
+    const dot = document.createElement('div');
+    dot.className = 'dot' + (i === current ? ' active' : '');
+    dot.onclick = () => goTo(i);
+    container.appendChild(dot);
+  }
+}
+
+function goTo(n) {
+  document.getElementById('p' + current).classList.remove('active');
+  current = Math.max(1, Math.min(TOTAL, n));
+  document.getElementById('p' + current).classList.add('active');
+  document.getElementById('navCounter').textContent = String(current).padStart(2, '0') + ' / ' + TOTAL;
+  buildDots();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function changePage(dir) { goTo(current + dir); }
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight') changePage(1);
+  if (e.key === 'ArrowLeft') changePage(-1);
+});
+
+buildDots();
+</script>
+</body>
+</html>
